@@ -1,0 +1,17 @@
+title: FCA Consumer Duty Complaint Handling AI Agent
+description: >-
+  A starter for FCA-regulated complaints teams. It structures one inbound
+  complaint, calculates DISP dates in code, and leaves every classification
+  to a handler. The agent never decides the outcome.
+url: "https://rahul-bachina.github.io"
+baseurl: "/consumer-duty-complaints-copilot-agent"
+markdown: kramdown
+permalink: pretty
+exclude:
+  - Gemfile
+  - vendor
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

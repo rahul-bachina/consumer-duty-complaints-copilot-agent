@@ -1,0 +1,99 @@
+name: Request an adaptation for my organisation
+description: Ask for this Consumer Duty complaint intake starter to be adapted for your organisation.
+title: "Adaptation request: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form asks Rahul Bachina to look at an adaptation. It does not create a contract and it does not start a build.
+
+        Do not paste a live complaint, a customer name, an account number, health information, or any secret. The public repository uses synthetic data only.
+  - type: input
+    id: organisation
+    attributes:
+      label: Organisation
+      description: The legal name of the firm, or "independent" if you are asking for yourself.
+      placeholder: Example Bank plc
+    validations:
+      required: true
+  - type: dropdown
+    id: sector
+    attributes:
+      label: Sector
+      options:
+        - Bank or building society
+        - General or life insurer
+        - Payment institution or e-money institution
+        - Consumer credit firm
+        - Claims management company
+        - Other FCA-regulated firm
+        - Consultancy or systems integrator
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Your role
+      options:
+        - Complaints handler or complaints operations
+        - Consumer Duty champion
+        - Compliance or conduct risk
+        - Data protection officer
+        - Solution architect or engineer
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: systems
+    attributes:
+      label: Systems you want this adapted to
+      multiple: true
+      options:
+        - Copilot Studio, standard harness
+        - Copilot Studio, GitHub Copilot harness
+        - Microsoft Foundry
+        - Dynamics 365 Customer Service
+        - Another case system
+        - The Python clock only
+    validations:
+      required: true
+  - type: dropdown
+    id: autonomy
+    attributes:
+      label: Autonomy level you need
+      description: This catalogue does not build A3. The published starter is A1.
+      options:
+        - A0, analysis only
+        - A1, a person approves every classification
+        - A2, a person approves high-risk actions only
+    validations:
+      required: true
+  - type: dropdown
+    id: calendar
+    attributes:
+      label: Bank-holiday calendar
+      description: The published clock is England and Wales.
+      options:
+        - England and Wales
+        - Scotland
+        - Northern Ireland
+        - More than one
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: adaptation
+    attributes:
+      label: What should change
+      description: Describe the approval chain, the case fields, and the deadline rules you need. Do not include live customer data.
+      placeholder: We need the clock to stay non-operative until a handler confirms our payment-services opening days, and the draft to land in a custom table rather than the production case.
+    validations:
+      required: true
+  - type: checkboxes
+    id: no-live-data
+    attributes:
+      label: Confirmation
+      options:
+        - label: This request contains no live complaint, no customer personal data, and no secret.
+          required: true

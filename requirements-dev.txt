@@ -1,0 +1,7 @@
+# Standalone development dependencies. The DISP clock uses the standard library.
+# requirements.txt (pytest) is the file the hub sync may replace.
+# This file is listed in .sync-ignore.
+
+pytest>=7.0.0
+jsonschema>=4.17.0
+pyyaml>=6.0

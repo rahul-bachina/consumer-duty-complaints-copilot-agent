@@ -1,0 +1,37 @@
+# FCA Consumer Duty Complaint Handling AI Agent (Copilot Studio and Microsoft Foundry)
+
+> A starter for FCA-regulated complaints teams. It structures one inbound complaint, calculates DISP dates in code, and leaves every classification to a handler. The agent never decides the outcome.
+
+This is experiment 02, catalogue ID C006, from the Copilot Agent Experiments catalogue, published as its own repository. Synthetic complaints only. Autonomy A1. The optional model step is Microsoft Foundry. Nothing in the Python calls a model or the network.
+
+## Documentation
+
+- [README](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/README.md): Who it is for, what it does and does not do, architecture, human approval, Handbook citations, evaluation, and limitations
+- [Architecture](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/docs/architecture.md): Components, the run sequence, and why the DISP clock is not in the prompt
+- [Architecture diagram](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/docs/architecture_diagram.png): The rendered handler, clock, and blocked-action picture
+- [Permissions manifest](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/agent-manifest.yaml): Least privilege, approval points, UK GDPR notes, risks, and the kill switch
+- [Manifest schema](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/schemas/agent-manifest.schema.json): Draft-07 schema. Permits autonomy A0, A1, and A2. Rejects A3
+- [Security and permissions](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/docs/security-and-permissions.md): Narrative of the same controls
+- [Autonomy levels](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/docs/autonomy-levels.md): Definitions of A0, A1, and A2
+
+## Build notes
+
+- [Copilot Studio standard harness](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/copilot-studio/README.md): Build guide. Not an importable solution
+- [System prompt](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/copilot-studio/system-prompt.md): Instructions to paste. The complaint is data
+- [Harness comparison](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/docs/harness-comparison.md): Standard harness and the GitHub Copilot harness
+- [GitHub Copilot harness](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/docs/github-copilot-harness.md): Skills for the same clock and the same draft. Not the GitHub Copilot service
+- [Microsoft Foundry](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/docs/foundry.md): Optional extraction call. No resource is created here
+- [Dynamics 365 Customer Service](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/docs/dynamics-365-customer-service.md): Not connected. Read-only or draft-only boundary
+
+## Evaluation
+
+- [Mock smoke report](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/eval/smoke_report.json): 22 of 22 synthetic fixtures passed the keyword stand-in. Not a model score
+- [Synthetic dataset](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/eval/synthetic_dataset.json): Invented complaints. The firm is fictional
+- [Evaluator](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/eval/evaluate.py): Re-runs that smoke test
+
+## Catalogue and citation
+
+- [Copilot Agent Experiments](https://github.com/rahul-bachina/copilot-agent-experiments): The public hub this experiment is copied from
+- [Catalogue site](https://rahul-bachina.github.io/copilot-agent-experiments/): The published catalogue
+- [Citation](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/CITATION.cff): CITATION.cff for this repository
+- [Full text for models](https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent/blob/main/llms-full.txt): README and key documents concatenated
