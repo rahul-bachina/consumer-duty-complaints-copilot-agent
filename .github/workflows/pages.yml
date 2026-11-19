@@ -28,16 +28,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # configure-pages calls the Pages API. That API 404s until Pages is
-      # enabled, which fails a pull request before Jekyll even runs. The
-      # site config already sets the base URL, so the pull request only
-      # needs the build. The push to main asks the action to enable Pages.
-      - name: Configure Pages
-        if: github.event_name != 'pull_request'
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
       - name: Build Jekyll site
         uses: actions/jekyll-build-pages@v1
         with:
@@ -49,14 +39,39 @@ jobs:
         with:
           path: ./_site
 
-  deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  pages-status:
     needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.pages.outputs.enabled }}
+    steps:
+      - name: See whether GitHub Pages is enabled
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${{ github.repository }}/pages" > /dev/null; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "GitHub Pages is enabled. The site will be published."
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "GitHub Pages is not enabled, so this run will not deploy."
+            echo "Turn it on under Settings > Pages > Build and deployment > Source: GitHub Actions."
+            echo "The Jekyll build has already succeeded. The next push to main will publish."
+          fi
+
+  deploy:
+    needs: pages-status
+    if: needs.pages-status.outputs.enabled == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
