@@ -28,8 +28,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # configure-pages calls the Pages API. That API 404s until Pages is
+      # enabled, which fails a pull request before Jekyll even runs. The
+      # site config already sets the base URL, so the pull request only
+      # needs the build. The push to main asks the action to enable Pages.
       - name: Configure Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Build Jekyll site
         uses: actions/jekyll-build-pages@v1
