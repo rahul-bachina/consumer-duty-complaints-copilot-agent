@@ -1,0 +1,24 @@
+# Paths the hub sync must not overwrite.
+# Paths are relative to the repository root.
+# A line ending in / skips that directory and everything under it.
+# The sync copies experiments/02-consumer-duty-complaint-intake/ onto this root.
+# It does not delete files that the hub later removes.
+
+README.md
+llms.txt
+llms-full.txt
+CITATION.cff
+SECURITY.md
+CONTRIBUTING.md
+LICENSE
+.gitignore
+.sync-ignore
+pyproject.toml
+requirements-dev.txt
+scripts/
+.github/
+site/
+schemas/
+docs/autonomy-levels.md
+tests/test_manifest_schema.py
+tests/fixtures/

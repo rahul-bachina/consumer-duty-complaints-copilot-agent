@@ -1,0 +1,55 @@
+name: Sync from hub
+
+on:
+  schedule:
+    # 07:00 UTC every Monday.
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Clone the public hub
+        run: git clone --depth 1 https://github.com/rahul-bachina/copilot-agent-experiments.git /tmp/hub
+
+      - name: Copy the experiment without touching standalone files
+        run: python scripts/sync_from_hub.py /tmp/hub/experiments/02-consumer-duty-complaint-intake .
+
+      - name: Open a pull request if anything changed
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Sync complaint intake from the experiments hub"
+          title: "Sync from copilot-agent-experiments"
+          branch: sync/consumer-duty-from-hub
+          delete-branch: true
+          base: main
+          body: |
+            Copies `experiments/02-consumer-duty-complaint-intake/` from the public hub
+            [rahul-bachina/copilot-agent-experiments](https://github.com/rahul-bachina/copilot-agent-experiments)
+            onto the matching paths in this repository.
+
+            Files listed in `.sync-ignore` are not overwritten. That includes `README.md`,
+            `llms.txt`, `llms-full.txt`, and the other standalone-only files.
+            `scripts/apply_standalone_paths.py` then rewrites the hub-relative schema path,
+            the repository URL, and the package import so the tree still runs on its own.
+
+            The workflow opens this pull request only when the copy changes a file.
+            It uses `GITHUB_TOKEN`. The repository setting **Allow GitHub Actions to create and approve pull requests**
+            (Settings, Actions, General, Workflow permissions) has to be on.
+
+            Review the Handbook dates if DISP or the England and Wales bank holidays have changed.
+            Do not merge live customer data. This repository stays on synthetic complaints.

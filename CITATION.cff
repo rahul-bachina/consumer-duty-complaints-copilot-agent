@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "FCA Consumer Duty Complaint Handling AI Agent (Copilot Studio and Microsoft Foundry)"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Bachina
+    given-names: Rahul
+    website: "https://github.com/rahul-bachina"
+repository-code: "https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent"
+url: "https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent"
+abstract: >-
+  A starter that helps an FCA-regulated complaints team turn one inbound
+  complaint into a structured intake. DISP dates are calculated in code.
+  A handler approves every classification. The agent never decides the outcome.
+keywords:
+  - consumer-duty
+  - FCA
+  - DISP
+  - complaints-handling
+  - Copilot Studio
+  - Microsoft Foundry
+  - UK GDPR
+license: MIT
+version: 0.1.0
+date-released: 2026-11-19

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description | strip }}">
+  <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ page.description | default: site.description | strip }}">
+  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/social-preview.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title | default: site.title }}">
+  <meta name="twitter:description" content="{{ page.description | default: site.description | strip }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/social-preview.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "FCA Consumer Duty Complaint Handling AI Agent (Copilot Studio and Microsoft Foundry)",
+    "description": {{ page.description | default: site.description | jsonify }},
+    "codeRepository": "https://github.com/rahul-bachina/consumer-duty-complaints-copilot-agent",
+    "url": "{{ site.url }}{{ site.baseurl }}/",
+    "programmingLanguage": "Python",
+    "runtimePlatform": "Copilot Studio, Microsoft Foundry",
+    "license": "https://opensource.org/licenses/MIT",
+    "version": "0.1.0",
+    "isAccessibleForFree": true,
+    "author": {
+      "@type": "Person",
+      "name": "Rahul Bachina",
+      "url": "https://github.com/rahul-bachina",
+      "jobTitle": "UK Solution Architect",
+      "knowsAbout": ["Power Platform", "Copilot Studio", "Microsoft Foundry", "Azure AI", "GitHub Copilot"]
+    }
+  }
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; margin: 0; color: #142033; background: #f4f7fb; line-height: 1.55; }
+    header { background: #10233f; color: #fff; padding: 2.5rem 1.25rem 2rem; }
+    header h1 { font-size: 1.8rem; line-height: 1.25; margin: 0 0 0.75rem; max-width: 46rem; }
+    header p { margin: 0; max-width: 46rem; color: #d6e2f0; }
+    main { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; background: #fff; }
+    a { color: #1f4e79; }
+    h2 { margin-top: 2rem; font-size: 1.25rem; }
+    ul { padding-left: 1.2rem; }
+    .meta { font-size: 0.9rem; color: #3d4d63; }
+    footer { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem 2.5rem; color: #3d4d63; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{{ page.title | default: site.title }}</h1>
+    <p>{{ page.description | default: site.description }}</p>
+  </header>
+  <main>
+    {{ content }}
+  </main>
+  <footer>
+    <p>MIT Licence. Synthetic complaints only. This page is not legal advice and it is not a statement of any firm's compliance.</p>
+  </footer>
+</body>
+</html>
